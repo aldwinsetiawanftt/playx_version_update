@@ -59,4 +59,4 @@ String getAppStoreInfoUrl(
         {required String packageId,
         required String country,
         required String language}) =>
-    "https://itunes.apple.com/lookup?bundleId=$packageId&country=$country&lang=$language";
+    "https://itunes.apple.com/lookup?id=$packageId&country=$country&lang=$language";
