@@ -160,7 +160,6 @@ class VersionChecker {
     final storeInfo = await _dataSource.getAppStoreInfo(
         packageId: packageId,
         country: country,
-        language: language,
         enableLog: enableLog);
 
     return storeInfo.mapAsync(success: (infoResult) async {

@@ -21,42 +21,50 @@ class RemoteStoreDataSource {
     bool enableLog = false,
   }) {
     final url = getGooglePlayUrl(
-        packageId: packageId, country: country, language: language);
-    return _client.get(url,
-        fromJson: StoreInfo.fromGooglePlay,
-        settings: _client.settings.copyWith(
-            logSettings: PlayxNetworkLoggerSettings(
+      packageId: packageId,
+      country: country,
+      language: language,
+    );
+    return _client.get(
+      url,
+      fromJson: StoreInfo.fromGooglePlay,
+      settings: _client.settings.copyWith(
+        logSettings: PlayxNetworkLoggerSettings(
           printResponseData: false,
           enabled: enableLog,
-        )));
+        ),
+      ),
+    );
   }
 
   Future<NetworkResult<StoreInfo>> getAppStoreInfo({
     required String packageId,
     required String country,
-    required String language,
     bool enableLog = false,
   }) {
     final url = getAppStoreInfoUrl(
-        packageId: packageId, country: country, language: language);
-    return _client.get(url,
-        fromJson: StoreInfo.fromAppStore,
-        settings: _client.settings.copyWith(
-            logSettings: PlayxNetworkLoggerSettings(
+      packageId: packageId,
+      country: country
+    );
+    return _client.get(
+      url,
+      fromJson: StoreInfo.fromAppStore,
+      settings: _client.settings.copyWith(
+        logSettings: PlayxNetworkLoggerSettings(
           printResponseData: false,
           enabled: enableLog,
-        )));
+        ),
+      ),
+    );
   }
 }
 
-String getGooglePlayUrl(
-        {required String packageId,
-        required String country,
-        required String language}) =>
+String getGooglePlayUrl({
+  required String packageId,
+  required String country,
+  required String language,
+}) =>
     "https://play.google.com/store/apps/details?id=$packageId&hl=$language&gl=$country";
 
-String getAppStoreInfoUrl(
-        {required String packageId,
-        required String country,
-        required String language}) =>
-    "https://itunes.apple.com/lookup?id=$packageId&country=$country&lang=$language";
+String getAppStoreInfoUrl({required String packageId, String country = 'US'}) =>
+    "https://itunes.apple.com/lookup?id=$packageId";
