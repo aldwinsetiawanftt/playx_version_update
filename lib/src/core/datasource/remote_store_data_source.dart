@@ -67,4 +67,4 @@ String getGooglePlayUrl({
     "https://play.google.com/store/apps/details?id=$packageId&hl=$language&gl=$country";
 
 String getAppStoreInfoUrl({required String packageId, String country = 'US'}) =>
-    "https://itunes.apple.com/lookup?id=$packageId";
+    "https://itunes.apple.com/lookup?id=$packageId&country=id";
