@@ -17,11 +17,11 @@ void main() {
     test('builds app store lookup url', () {
       expect(
         getAppStoreInfoUrl(
-          packageId: 'com.example.app',
+          packageId: '123456789',
           country: 'in',
-          language: 'en',
+          timestamp: 1700000000000,
         ),
-        'https://itunes.apple.com/lookup?bundleId=com.example.app&country=in&lang=en',
+        'https://itunes.apple.com/lookup?id=123456789&country=id&_t=1700000000000',
       );
     });
   });
