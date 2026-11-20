@@ -85,7 +85,12 @@ class RemoteStoreDataSource {
           }
           return result;
         })
-        .whenComplete(() => _appStoreInFlight.remove(key));
+        // Block body on purpose: `remove` returns this same future, and a
+        // future returned from whenComplete is awaited, so `=> remove(key)`
+        // makes the request wait on itself forever.
+        .whenComplete(() {
+          _appStoreInFlight.remove(key);
+        });
 
     _appStoreInFlight[key] = request;
     return request;
